@@ -1,18 +1,11 @@
 import express from 'express';
-const router = express.Router()
+const router = express.Router();
+import { UserService } from '../serverces/userService';
 
-const timeLog = (req, res, next) => {
-  console.log('Time: ', Date.now())
-  next()
-}
-router.use(timeLog)
+router.get('/', async (req, res, next) => {
+  const users = await UserService.findAllUsers(next);
 
-router.get('/', (req, res) => {
-  res.send('Birds home page')
-})
-// define the about route
-router.get('/about', (req, res) => {
-  res.send('About birds')
-})
+  res.json(users);
+});
 
 export default router;
