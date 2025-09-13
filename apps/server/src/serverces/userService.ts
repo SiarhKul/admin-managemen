@@ -7,7 +7,7 @@ export class UserService {
     try {
       return await UserRepository.getAllUsers();
     } catch (err) {
-      next(new ResponseError('Error', 500));
+      next(new ResponseError('Error occurred while getting all users', 500));
     }
   }
 }
