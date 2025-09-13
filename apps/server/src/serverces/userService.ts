@@ -1,5 +1,4 @@
 import { UserRepository } from '../repositories/userRepository';
-import { readFile } from 'node:fs/promises';
 import { DatabaseError } from '../dtos/errors/index';
 
 export class UserService {
