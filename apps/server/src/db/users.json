@@ -1,45 +1,20 @@
 [
   {
     "id": 1,
-    "name": "Jane Doe",
-    "email": "jane.doe@example.com",
-    "roles": [
-      "Admin",
-      "Editor"
-    ]
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "role": "admin"
   },
   {
     "id": 2,
-    "name": "John Smith",
-    "email": "john.smith@example.com",
-    "roles": [
-      "User"
-    ]
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "role": "user"
   },
   {
     "id": 3,
-    "name": "Peter Jones",
-    "email": "peter.jones@example.com",
-    "roles": [
-      "User",
-      "Viewer"
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Mary Williams",
-    "email": "mary.williams@example.com",
-    "roles": [
-      "Moderator"
-    ]
-  },
-  {
-    "id": 5,
-    "name": "David Brown",
-    "email": "david.brown@example.com",
-    "roles": [
-      "User"
-    ]
+    "name": "Bob Johnson",
+    "email": "bob.johnson@example.com",
+    "role": "user"
   }
 ]
-

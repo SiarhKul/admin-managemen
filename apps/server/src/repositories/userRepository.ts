@@ -1,11 +1,23 @@
 import { readFile } from 'node:fs/promises';
+import { DatabaseError } from '../dtos/errors';
 
 export class UserRepository {
   static async getAllUsers() {
-    const users = await readFile('apps/server/src/db/users.json', 'utf-8');
+    try {
+      const users = await readFile('1apps/server/src/db/users.json', 'utf-8');
 
-    throw new Error('Simulated error for testing purposes');
-    //
-    // return JSON.parse(users);
+      return JSON.parse(users);
+    } catch (err) {
+      if (err instanceof Error) {
+        if (err.message.includes('ENOENT')) {
+          throw new DatabaseError('Users database file not found', 500);
+        }
+        throw new DatabaseError(`Failed to read users: ${err.message}`, 500);
+      }
+      throw new DatabaseError(
+        'Unknown error occurred while reading users',
+        500
+      );
+    }
   }
 }

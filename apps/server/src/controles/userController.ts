@@ -1,11 +1,15 @@
 import express from 'express';
-const router = express.Router();
 import { UserService } from '../serverces/userService';
+import { asyncHandler } from '../middleware/asyncHandler';
 
-router.get('/', async (req, res, next) => {
-  const users = await UserService.findAllUsers(next);
+const router = express.Router();
 
-  res.json(users);
-});
+router.get(
+  '/',
+  asyncHandler(async (req, res) => {
+    const users = await UserService.findAllUsers();
+    res.json(users);
+  })
+);
 
 export default router;

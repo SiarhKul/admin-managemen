@@ -1,10 +1,10 @@
-export class ResponseError extends Error {
-  private statusCode: number;
+export class DatabaseError extends Error {
+  statusCode: number;
 
   constructor(message: string, statusCode: number) {
     super(message);
 
-    this.name = 'ResponseError';
+    this.name = 'DatabaseError';
     this.statusCode = statusCode;
   }
 }
