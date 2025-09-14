@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { DatabaseError } from '../dtos/errors';
+import { DatabaseError } from '../errors/index';
+import { ErrorResponse } from '../errors/ErrorResponse';
 
 export const errorHandler = (
   err: Error,
@@ -16,16 +17,10 @@ export const errorHandler = (
   });
 
   if (err instanceof DatabaseError) {
-    return res.status(err.statusCode).json({
-      error: err.message,
-      statusCode: err.statusCode,
-      timestamp: new Date().toISOString(),
-    });
+    return res
+      .status(err.statusCode)
+      .json(new ErrorResponse(err.statusCode, err.message));
   }
 
-  res.status(500).json({
-    error: err.message,
-    statusCode: 500,
-    timestamp: new Date().toISOString(),
-  });
+  res.status(500).json(new ErrorResponse(500, err.message));
 };

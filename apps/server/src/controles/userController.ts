@@ -1,6 +1,7 @@
 import { UserService } from '../serverces/userService';
 import { Request, Response } from 'express';
 import { ERoles } from '@admin-management/types';
+import { ErrorResponse } from '../errors/ErrorResponse';
 
 export class UserController {
   static getAllUsers = async (req: Request, res: Response) => {
@@ -13,20 +14,21 @@ export class UserController {
     const { role } = req.body;
 
     if (!role || !Object.values(ERoles).includes(role)) {
-      return res.status(400).json({
-        error: 'Invalid role. Must be one of: Admin, Editor, Viewer',
-        statusCode: 400,
-        timestamp: new Date().toISOString(),
-      });
+      return res
+        .status(400)
+        .json(
+          new ErrorResponse(
+            400,
+            'Invalid role. Must be one of: Admin, Editor, Viewer'
+          )
+        );
     }
 
     const userId = parseInt(id);
     if (isNaN(userId)) {
-      return res.status(400).json({
-        error: 'Invalid user ID. Must be a number',
-        statusCode: 400,
-        timestamp: new Date().toISOString(),
-      });
+      return res
+        .status(400)
+        .json(new ErrorResponse(400, 'Invalid user ID. Must be a number'));
     }
 
     const updatedUser = await UserService.updateUserRole(userId, role);

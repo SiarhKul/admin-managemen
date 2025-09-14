@@ -1,6 +1,6 @@
 import { UserRepository } from '../repositories/userRepository';
-import { DatabaseError } from '../dtos/errors/index';
 import { ERoles } from '@admin-management/types';
+import { DatabaseError } from '../errors/index';
 
 export class UserService {
   static async findAllUsers() {

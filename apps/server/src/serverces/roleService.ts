@@ -1,5 +1,5 @@
-import { DatabaseError } from '../dtos/errors/index';
 import { RoleRepository } from '../repositories/roleRepository';
+import { DatabaseError } from '../errors/index';
 
 export class RoleService {
   static async getRoles() {
