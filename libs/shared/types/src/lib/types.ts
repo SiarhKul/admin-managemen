@@ -6,3 +6,8 @@ export interface IUser {
   email: string;
   role: ERoles;
 }
+
+export interface IRole {
+  id: number;
+  name: ERoles;
+}

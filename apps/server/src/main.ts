@@ -2,6 +2,7 @@ import express from 'express';
 import * as path from 'path';
 import { errorHandler } from './controles/errorController';
 import userRouter from './router/userRouter';
+import roleRouter from './router/roleRouter';
 
 const PORT = process.env.PORT || 3333;
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use('/api/users', userRouter);
+app.use('/api/roles', roleRouter);
 
 app.use('*', (req, res) => {
   res.status(404).json({
