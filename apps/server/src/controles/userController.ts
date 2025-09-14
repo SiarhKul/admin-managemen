@@ -1,15 +1,9 @@
-import express from 'express';
 import { UserService } from '../serverces/userService';
-import { asyncHandler } from '../middleware/asyncHandler';
+import { Request, Response } from 'express';
 
-const router = express.Router();
-
-router.get(
-  '/',
-  asyncHandler(async (req, res) => {
+export class UserController {
+  static getAllUsers = async (req: Request, res: Response) => {
     const users = await UserService.findAllUsers();
     res.json(users);
-  })
-);
-
-export default router;
+  };
+}
