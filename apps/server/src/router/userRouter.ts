@@ -4,6 +4,8 @@ import { UserController } from '../controles/userController';
 
 const router = express.Router();
 
-router.get('/', asyncHandler(UserController.getAllUsers));
+router.route('/').get(asyncHandler(UserController.getAllUsers));
+
+router.route('/:id/role').patch(asyncHandler(UserController.updateUserRole));
 
 export default router;

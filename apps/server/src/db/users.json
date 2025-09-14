@@ -3,13 +3,13 @@
     "id": 1,
     "name": "John Doe",
     "email": "john.doe@example.com",
-    "role": "admin"
+    "role": "Viewer"
   },
   {
     "id": 2,
     "name": "Jane Smith",
     "email": "jane.smith@example.com",
-    "role": "user"
+    "role": "Viewer"
   },
   {
     "id": 3,
