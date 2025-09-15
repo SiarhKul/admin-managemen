@@ -18,11 +18,6 @@ namespace userApi {
     const { data } = await api.patch<IUser>(`/users/${userId}/role`, { role });
     return data;
   };
-
-  export const getAllRoles = async (): Promise<ERoles[]> => {
-    const { data } = await api.get<ERoles[]>('/roles');
-    return data;
-  };
 }
 
 export default userApi;

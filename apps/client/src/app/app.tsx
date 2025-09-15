@@ -1,7 +1,5 @@
 import UserTable from './components/UserTable';
 
-export function App() {
-  return <UserTable />;
-}
+const App = () => <UserTable />;
 
 export default App;

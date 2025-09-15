@@ -2,15 +2,19 @@ import { Flex, Select, Spin, Table, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { ERoles, IUser } from '@admin-management/types';
 import { useUserApi } from '../hooks/useUserApi';
+import { useRolesApi } from '../hooks/useRolesApi';
 
 const { Title } = Typography;
 
-//todo: fetch roles from api
-const roles: ERoles[] = [ERoles.ADMIN, ERoles.EDITOR, ERoles.VIEWER];
-
 export default function UserTable() {
   const { users, loading, handleChangeRole } = useUserApi();
-  console.log(users);
+  const { isLoading, roles } = useRolesApi();
+
+  console.log(roles);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   const columns: ColumnsType<IUser> = [
     {
       title: 'ID',
@@ -39,7 +43,7 @@ export default function UserTable() {
         <Select
           value={record.role}
           onChange={(val) => handleChangeRole(record.id, val as ERoles)}
-          options={roles.map((r) => ({ label: r, value: r }))}
+          options={roles.map(({ role }) => ({ label: role, value: role }))}
           style={{ minWidth: 160 }}
         />
       ),

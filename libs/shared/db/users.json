@@ -3,7 +3,7 @@
     "id": 1,
     "name": "John Doe",
     "email": "john.doe@example.com",
-    "role": "Viewer"
+    "role": "Admin"
   },
   {
     "id": 2,

@@ -9,5 +9,5 @@ export interface IUser {
 
 export interface IRole {
   id: number;
-  name: ERoles;
+  role: ERoles;
 }

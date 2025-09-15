@@ -20,7 +20,6 @@ export const useUserApi = () => {
       })
       .catch((e: unknown) => {
         const msg = e instanceof Error ? e.message : 'Failed to fetch users';
-        message.error(msg);
       })
       .finally(() => setLoading(false));
 

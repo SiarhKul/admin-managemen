@@ -21,31 +21,26 @@ export class UserService {
   }
 
   static async updateUserRole(userId: number, newRole: ERoles) {
-    // try {
     try {
       return await UserRepository.updateUserRole(userId, newRole);
     } catch (err) {
-      console.log(err);
+      if (err instanceof Error) {
+        if (err.message.includes('not found')) {
+          throw new DatabaseError(err.message, 404);
+        }
+        if (err.message.includes('ENOENT')) {
+          throw new DatabaseError('Users database file not found', 500);
+        }
+        throw new DatabaseError(
+          `Failed to update user role: ${err.message}`,
+          500
+        );
+      }
+
+      throw new DatabaseError(
+        'Unknown error occurred while updating user role',
+        500
+      );
     }
-
-    // } catch (err) {
-    //   if (err instanceof Error) {
-    //     if (err.message.includes('not found')) {
-    //       throw new DatabaseError(err.message, 404);
-    //     }
-    //     if (err.message.includes('ENOENT')) {
-    //       throw new DatabaseError('Users database file not found', 500);
-    //     }
-    //     throw new DatabaseError(
-    //       `Failed to update user role: ${err.message}`,
-    //       500
-    //     );
-    //   }
-
-    //   throw new DatabaseError(
-    //     'Unknown error occurred while updating user role',
-    //     500
-    //   );
-    // }
   }
 }
