@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { IUser, ERoles } from '@admin-management/types';
 
-const PATH_TO_USERS = 'apps/server/src/assets/db/users.json';
+const PATH_TO_USERS = 'libs/shared/db/users.json';
 
 export class UserRepository {
   static async getAllUsers(): Promise<IUser[]> {

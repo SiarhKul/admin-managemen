@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { IRole } from '@admin-management/types';
 
-const PATH_TO_ROLES = 'apps/server/src/assets/db/roles.json';
+const PATH_TO_ROLES = 'libs/shared/db/roles.json';
 
 export class RoleRepository {
   static async getRoles(): Promise<IRole[]> {
