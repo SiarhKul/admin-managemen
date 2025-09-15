@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { ERoles, IUser } from '@admin-management/types';
 import userApi from '../services/userApi';
 import { message } from 'antd';
+import { useMessage } from '../providers/MessageProvider';
 
 export const useUserApi = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const { success, error } = useMessage();
 
   useEffect(() => {
     let mounted = true;
@@ -20,6 +22,7 @@ export const useUserApi = () => {
       })
       .catch((e: unknown) => {
         const msg = e instanceof Error ? e.message : 'Failed to fetch users';
+        error(msg);
       })
       .finally(() => setLoading(false));
 

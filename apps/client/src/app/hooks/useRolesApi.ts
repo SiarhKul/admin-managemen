@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { roleApi } from '../services/roleApi';
 import { IRole } from '@admin-management/types';
-import { message } from 'antd';
+import { useMessage } from '../providers/MessageProvider';
 
 export const useRolesApi = () => {
   const [roles, setRoles] = useState<IRole[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { success, error } = useMessage();
 
   useEffect(() => {
     let mounted = true;
@@ -19,7 +20,7 @@ export const useRolesApi = () => {
       })
       .catch((e: unknown) => {
         const msg = e instanceof Error ? e.message : 'Failed to fetch roles';
-        message.error(msg);
+        error(msg);
       })
       .finally(() => {
         setIsLoading(false);
