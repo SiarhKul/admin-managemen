@@ -1,4 +1,4 @@
-import { Flex, Select, Spin, Table, Typography } from 'antd';
+import { Flex, message, Select, Spin, Table, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { ERoles, IUser } from '@admin-management/types';
 import { useUserApi } from '../hooks/useUserApi';
@@ -10,7 +10,6 @@ export default function UserTable() {
   const { users, loading, handleChangeRole } = useUserApi();
   const { isLoading, roles } = useRolesApi();
 
-  console.log(roles);
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -51,20 +50,22 @@ export default function UserTable() {
   ];
 
   return (
-    <Flex vertical style={{ padding: 16, maxWidth: 1200, margin: '0 auto' }}>
-      <Title level={4} style={{ marginBottom: 16 }}>
-        Users
-      </Title>
-      <Flex gap={8} style={{ marginBottom: 12 }}>
-        <div>Add multi select</div>
+    <>
+      <Flex vertical style={{ padding: 16, maxWidth: 1200, margin: '0 auto' }}>
+        <Title level={4} style={{ marginBottom: 16 }}>
+          Users
+        </Title>
+        <Flex gap={8} style={{ marginBottom: 12 }}>
+          <div>Add multi select</div>
+        </Flex>
+        <Spin spinning={loading}>
+          <Table<IUser>
+            rowKey={(r) => r.id}
+            columns={columns}
+            dataSource={users}
+          />
+        </Spin>
       </Flex>
-      <Spin spinning={loading}>
-        <Table<IUser>
-          rowKey={(r) => r.id}
-          columns={columns}
-          dataSource={users}
-        />
-      </Spin>
-    </Flex>
+    </>
   );
 }

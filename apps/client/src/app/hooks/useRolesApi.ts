@@ -7,8 +7,6 @@ export const useRolesApi = () => {
   const [roles, setRoles] = useState<IRole[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(roles);
-
   useEffect(() => {
     let mounted = true;
     setIsLoading(true);
