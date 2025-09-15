@@ -10,7 +10,7 @@ const roles: ERoles[] = [ERoles.ADMIN, ERoles.EDITOR, ERoles.VIEWER];
 
 export default function UserTable() {
   const { users, loading, handleChangeRole } = useUserApi();
-
+  console.log(users);
   const columns: ColumnsType<IUser> = [
     {
       title: 'ID',

@@ -1,9 +1,11 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { IUser, ERoles } from '@admin-management/types';
 
+const PATH_TO_USERS = 'apps/server/src/assets/db/users.json';
+
 export class UserRepository {
   static async getAllUsers(): Promise<IUser[]> {
-    const users = await readFile('apps/server/src/db/users.json', 'utf-8');
+    const users = await readFile(PATH_TO_USERS, 'utf-8');
 
     return JSON.parse(users);
   }
@@ -18,11 +20,7 @@ export class UserRepository {
 
     users[userIndex].role = newRole;
 
-    await writeFile(
-      'apps/server/src/db/users.json',
-      JSON.stringify(users, null, 2),
-      'utf-8'
-    );
+    await writeFile(PATH_TO_USERS, JSON.stringify(users, null, 2), 'utf-8');
 
     return users[userIndex];
   }

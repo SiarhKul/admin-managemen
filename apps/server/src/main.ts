@@ -26,7 +26,7 @@ app.use('*', (req, res) => {
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
-  console.log(`Listening at http://localhost:${PORT}/api/users`);
+  console.log(`Listening at http://localhost:${PORT}`);
 });
 
 server.on('error', console.error);

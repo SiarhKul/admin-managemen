@@ -3,7 +3,7 @@
     "id": 1,
     "name": "John Doe",
     "email": "john.doe@example.com",
-    "role": "Editor"
+    "role": "Viewer"
   },
   {
     "id": 2,
@@ -15,12 +15,12 @@
     "id": 3,
     "name": "Bob Johnson",
     "email": "bob.johnson@example.com",
-    "role": "Admin"
+    "role": "Viewer"
   },
   {
     "id": 4,
     "name": "Karl Discon",
     "email": "karl.dicson@example.com",
-    "role": "Admin"
+    "role": "Editor"
   }
 ]
