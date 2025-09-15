@@ -50,6 +50,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "antd": "^5.27.3",
     "axios": "^1.6.0",
     "express": "^4.21.2",
     "react": "19.0.0",
