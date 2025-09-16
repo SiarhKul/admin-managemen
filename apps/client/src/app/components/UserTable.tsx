@@ -10,7 +10,19 @@ export default function UserTable() {
   const [selectedRoles, setSelectedRoles] = useState<ERoles[]>([]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          width: '100%',
+          minHeight: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Spin />
+      </div>
+    );
   }
 
   const columns: ColumnsType<IUser> = [
