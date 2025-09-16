@@ -2,7 +2,12 @@
 
 ## Prerequisites
 
-- Node.js 18.x LTS (or 20.x) and npm
+- Node.js 20.x LTS and npm
+- Nx CLI installed globally
+
+```bash
+npm i -g nx@latest
+```
 
 ## Install
 
