@@ -1,14 +1,12 @@
-import { Flex, message, Select, Spin, Table, Typography } from 'antd';
+import { Flex, Select, Spin, Table, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { ERoles, IUser } from '@admin-management/types';
-import { useUserApi } from '../hooks/useUserApi';
-import { useRolesApi } from '../hooks/useRolesApi';
+import { useTable } from '../hooks/useTable';
 
 const { Title } = Typography;
 
 export default function UserTable() {
-  const { users, loading, handleChangeRole } = useUserApi();
-  const { isLoading, roles } = useRolesApi();
+  const { users, roles, isLoading, handleChangeRole } = useTable();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -58,7 +56,7 @@ export default function UserTable() {
         <Flex gap={8} style={{ marginBottom: 12 }}>
           <div>Add multi select</div>
         </Flex>
-        <Spin spinning={loading}>
+        <Spin spinning={isLoading}>
           <Table<IUser>
             rowKey={(r) => r.id}
             columns={columns}

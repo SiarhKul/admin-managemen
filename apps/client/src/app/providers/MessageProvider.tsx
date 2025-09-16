@@ -1,12 +1,12 @@
 import React, { createContext, PropsWithChildren, useContext } from 'react';
 import { message } from 'antd';
 
-interface IMs {
+interface IMessageContext {
   success: (text: string) => void;
   error: (text: string) => void;
 }
 
-const MessageContext = createContext<IMs | null>(null);
+const MessageContext = createContext<IMessageContext | null>(null);
 
 export const MessageProvider = ({ children }: PropsWithChildren) => {
   const [messageApi, contextHolder] = message.useMessage();
