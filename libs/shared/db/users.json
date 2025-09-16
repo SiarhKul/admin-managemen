@@ -3,24 +3,35 @@
     "id": 1,
     "name": "John Doe",
     "email": "john.doe@example.com",
-    "roles": ["Viewer", "Admin"]
+    "roles": [
+      "Viewer",
+      "Admin",
+      "Editor"
+    ]
   },
   {
     "id": 2,
     "name": "Jane Smith",
     "email": "jane.smith@example.com",
-    "roles": ["Admin"]
+    "roles": [
+      "Admin"
+    ]
   },
   {
     "id": 3,
     "name": "Bob Johnson",
     "email": "bob.johnson@example.com",
-    "roles": ["Editor"]
+    "roles": [
+      "Editor"
+    ]
   },
   {
     "id": 4,
     "name": "Karl Discon",
     "email": "karl.dicson@example.com",
-    "roles": ["Viewer"]
+    "roles": [
+      "Viewer",
+      "Admin"
+    ]
   }
 ]
