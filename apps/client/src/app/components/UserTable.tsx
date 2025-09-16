@@ -5,7 +5,7 @@ import { ERoles, IUser } from '@admin-management/types';
 import { useTable } from '../hooks/useTable';
 const { Title } = Typography;
 
-export default function UserTable() {
+export function UserTable() {
   const { users, roles, isLoading, handleChangeRoles } = useTable();
   const [selectedRoles, setSelectedRoles] = useState<ERoles[]>([]);
 
@@ -49,11 +49,11 @@ export default function UserTable() {
       title: 'Roles',
       dataIndex: 'roles',
       key: 'roles',
-      render: (_, record) => (
+      render: (_, user) => (
         <Select
           mode="multiple"
-          value={record.roles}
-          onChange={(vals) => handleChangeRoles(record.id, vals)}
+          value={user.roles}
+          onChange={(vals) => handleChangeRoles(user.id, vals)}
           options={roles.map(({ role }) => ({ label: role, value: role }))}
           style={{ minWidth: 220 }}
         />
