@@ -22,10 +22,10 @@ export const MessageProvider = ({ children }: PropsWithChildren) => {
   const ms = useMemo(() => ({ success, error }), []);
 
   return (
-    <MessageContext.Provider value={ms}>
+    <MessageContext value={ms}>
       {contextHolder}
       {children}
-    </MessageContext.Provider>
+    </MessageContext>
   );
 };
 

@@ -29,8 +29,7 @@
     "name": "Karl Discon",
     "email": "karl.dicson@example.com",
     "roles": [
-      "Viewer",
-      "Admin"
+      "Viewer"
     ]
   }
 ]
