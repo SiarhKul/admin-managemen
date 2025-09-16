@@ -36,17 +36,17 @@ export const useTable = () => {
     };
   }, [error]);
 
-  const handleChangeRole = async (userId: number, nextRole: ERoles) => {
+  const handleChangeRoles = async (userId: number, nextRoles: ERoles[]) => {
     const previousUsers = users;
     setUsers((currentUsers) =>
       currentUsers.map((user) =>
-        user.id === userId ? { ...user, role: nextRole } : user
+        user.id === userId ? { ...user, roles: nextRoles } : user
       )
     );
 
     try {
-      await userApi.updateUserRole(userId, nextRole);
-      success('Role updated successfully');
+      await userApi.updateUserRoles(userId, nextRoles);
+      success('Roles updated successfully');
     } catch (e) {
       const msg = e instanceof Error ? e.message : 'Failed to update role';
       setUsers(previousUsers);
@@ -54,5 +54,5 @@ export const useTable = () => {
     }
   };
 
-  return { users, roles, isLoading, handleChangeRole };
+  return { users, roles, isLoading, handleChangeRoles };
 };

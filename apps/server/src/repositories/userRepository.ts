@@ -10,7 +10,10 @@ export class UserRepository {
     return JSON.parse(users);
   }
 
-  static async updateUserRole(userId: number, newRole: ERoles): Promise<IUser> {
+  static async updateUserRoles(
+    userId: number,
+    newRoles: ERoles[]
+  ): Promise<IUser> {
     const users = await this.getAllUsers();
     const userIndex = users.findIndex((user) => user.id === userId);
 
@@ -18,7 +21,7 @@ export class UserRepository {
       throw new Error(`User with id ${userId} not found`);
     }
 
-    users[userIndex].role = newRole;
+    users[userIndex].roles = newRoles;
 
     await writeFile(PATH_TO_USERS, JSON.stringify(users, null, 2), 'utf-8');
 

@@ -11,11 +11,11 @@ namespace userApi {
     return data;
   };
 
-  export const updateUserRole = async (
+  export const updateUserRoles = async (
     userId: number,
-    role: ERoles
+    roles: ERoles[]
   ): Promise<IUser> => {
-    const { data } = await api.patch<IUser>(`/users/${userId}/role`, { role });
+    const { data } = await api.patch<IUser>(`/users/${userId}/role`, { roles });
     return data;
   };
 }

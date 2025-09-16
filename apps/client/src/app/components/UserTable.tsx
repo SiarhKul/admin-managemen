@@ -3,11 +3,10 @@ import { useState } from 'react';
 import type { ColumnsType } from 'antd/es/table';
 import { ERoles, IUser } from '@admin-management/types';
 import { useTable } from '../hooks/useTable';
-
 const { Title } = Typography;
 
 export default function UserTable() {
-  const { users, roles, isLoading, handleChangeRole } = useTable();
+  const { users, roles, isLoading, handleChangeRoles } = useTable();
   const [selectedRoles, setSelectedRoles] = useState<ERoles[]>([]);
 
   if (isLoading) {
@@ -35,15 +34,16 @@ export default function UserTable() {
       ellipsis: true,
     },
     {
-      title: 'Role',
-      dataIndex: 'role',
-      key: 'role',
-      render: (_value, record) => (
+      title: 'Roles',
+      dataIndex: 'roles',
+      key: 'roles',
+      render: (_, record) => (
         <Select
-          value={record.role}
-          onChange={(val) => handleChangeRole(record.id, val as ERoles)}
+          mode="multiple"
+          value={record.roles}
+          onChange={(vals) => handleChangeRoles(record.id, vals)}
           options={roles.map(({ role }) => ({ label: role, value: role }))}
-          style={{ minWidth: 160 }}
+          style={{ minWidth: 220 }}
         />
       ),
     },
@@ -72,7 +72,9 @@ export default function UserTable() {
             columns={columns}
             dataSource={
               selectedRoles.length
-                ? users.filter((u) => selectedRoles.includes(u.role))
+                ? users.filter((u) =>
+                    u.roles.some((r) => selectedRoles.includes(r))
+                  )
                 : users
             }
           />

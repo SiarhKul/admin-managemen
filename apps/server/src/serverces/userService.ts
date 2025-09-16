@@ -20,9 +20,9 @@ export class UserService {
     }
   }
 
-  static async updateUserRole(userId: number, newRole: ERoles) {
+  static async updateUserRoles(userId: number, newRoles: ERoles[]) {
     try {
-      return await UserRepository.updateUserRole(userId, newRole);
+      return await UserRepository.updateUserRoles(userId, newRoles);
     } catch (err) {
       if (err instanceof Error) {
         if (err.message.includes('not found')) {
