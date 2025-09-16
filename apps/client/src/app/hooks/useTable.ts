@@ -38,6 +38,7 @@ export const useTable = () => {
 
   const handleChangeRoles = async (userId: number, nextRoles: ERoles[]) => {
     const previousUsers = users;
+
     setUsers((currentUsers) =>
       currentUsers.map((user) =>
         user.id === userId ? { ...user, roles: nextRoles } : user

@@ -80,6 +80,7 @@ export default function UserTable() {
         </Flex>
         <Spin spinning={isLoading}>
           <Table<IUser>
+            pagination={false}
             rowKey={(r) => r.id}
             columns={columns}
             dataSource={
