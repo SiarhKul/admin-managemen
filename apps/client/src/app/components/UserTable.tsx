@@ -1,4 +1,5 @@
 import { Flex, Select, Spin, Table, Typography } from 'antd';
+import { useState } from 'react';
 import type { ColumnsType } from 'antd/es/table';
 import { ERoles, IUser } from '@admin-management/types';
 import { useTable } from '../hooks/useTable';
@@ -7,6 +8,7 @@ const { Title } = Typography;
 
 export default function UserTable() {
   const { users, roles, isLoading, handleChangeRole } = useTable();
+  const [selectedRoles, setSelectedRoles] = useState<ERoles[]>([]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -54,13 +56,25 @@ export default function UserTable() {
           Users
         </Title>
         <Flex gap={8} style={{ marginBottom: 12 }}>
-          <div>Add multi select</div>
+          <Select
+            mode="multiple"
+            allowClear
+            placeholder="Filter by role"
+            options={roles.map(({ role }) => ({ label: role, value: role }))}
+            value={selectedRoles}
+            onChange={(vals) => setSelectedRoles(vals as ERoles[])}
+            style={{ minWidth: 260 }}
+          />
         </Flex>
         <Spin spinning={isLoading}>
           <Table<IUser>
             rowKey={(r) => r.id}
             columns={columns}
-            dataSource={users}
+            dataSource={
+              selectedRoles.length
+                ? users.filter((u) => selectedRoles.includes(u.role))
+                : users
+            }
           />
         </Spin>
       </Flex>
