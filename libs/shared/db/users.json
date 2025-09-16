@@ -5,8 +5,7 @@
     "email": "john.doe@example.com",
     "roles": [
       "Viewer",
-      "Admin",
-      "Editor"
+      "Admin"
     ]
   },
   {

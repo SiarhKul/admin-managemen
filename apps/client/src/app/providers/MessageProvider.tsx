@@ -1,4 +1,9 @@
-import React, { createContext, PropsWithChildren, useContext } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useMemo,
+} from 'react';
 import { message } from 'antd';
 
 interface IMessageContext {
@@ -14,7 +19,7 @@ export const MessageProvider = ({ children }: PropsWithChildren) => {
   const success = (text: string) => messageApi.success(text);
   const error = (text: string) => messageApi.error(text);
 
-  const ms = { success, error };
+  const ms = useMemo(() => ({ success, error }), []);
 
   return (
     <MessageContext.Provider value={ms}>
