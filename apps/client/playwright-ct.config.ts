@@ -5,8 +5,8 @@ import * as path from 'node:path';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: path.resolve(__dirname, 'e2e-components'),
-  testIgnore: ['e2e/example.test.ts'],
+  testDir: path.resolve(__dirname, 'e2e-ct'),
+  testIgnore: ['e2e/*'],
   /* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
   snapshotDir: './__snapshots__',
   /* Maximum time one test can run for. */
