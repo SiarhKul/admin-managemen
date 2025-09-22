@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/experimental-ct-react';
 import React from 'react';
-import { MessageProvider } from '../../client/src/app/providers/MessageProvider';
-import App from '../../client/src/app/app';
+import { MessageProvider } from '../src/app/providers/MessageProvider';
+import App from '../src/app/app';
 
 test('App component loads and displays users', async ({ mount, page }) => {
   // Mock the API endpoints
