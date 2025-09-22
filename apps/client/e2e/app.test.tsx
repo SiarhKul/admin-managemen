@@ -3,8 +3,7 @@ import React from 'react';
 import { MessageProvider } from '../../client/src/app/providers/MessageProvider';
 import App from '../../client/src/app/app';
 
-// Mock the API responses
-test.beforeEach(async ({ page }) => {
+test('App component loads and displays users', async ({ mount, page }) => {
   // Mock the API endpoints
   await page.route('**/api/users', async (route) => {
     await route.fulfill({
@@ -37,9 +36,6 @@ test.beforeEach(async ({ page }) => {
       ]),
     });
   });
-});
-
-test('App component loads and displays users', async ({ mount, page }) => {
   const component = await mount(
     <MessageProvider>
       <App />
