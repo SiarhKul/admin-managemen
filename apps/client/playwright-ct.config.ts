@@ -1,10 +1,11 @@
 import { defineConfig, devices } from '@playwright/experimental-ct-react';
+import * as path from 'node:path';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './',
+  testDir: path.resolve(__dirname, 'e2e-components'),
   testIgnore: ['e2e/example.test.ts'],
   /* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
   snapshotDir: './__snapshots__',

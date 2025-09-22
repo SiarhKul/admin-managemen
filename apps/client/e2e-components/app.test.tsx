@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/experimental-ct-react';
-import React from 'react';
 import { MessageProvider } from '../src/app/providers/MessageProvider';
 import App from '../src/app/app';
 
