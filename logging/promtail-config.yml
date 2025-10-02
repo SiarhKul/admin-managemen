@@ -1,0 +1,62 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  # Application logs
+  - job_name: admin-management-app
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: admin-management
+          service: app
+          __path__: /var/log/app/*.log
+
+  # Server logs
+  - job_name: admin-management-server
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: admin-management
+          service: server
+          __path__: /var/log/app/server/*.log
+
+  # Error logs
+  - job_name: admin-management-errors
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: admin-management
+          service: errors
+          level: error
+          __path__: /var/log/app/errors/*.log
+
+  # System logs (if needed)
+  - job_name: system-logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: system
+          __path__: /var/log/host/syslog
+    pipeline_stages:
+      - match:
+          selector: '{job="system"}'
+          stages:
+            - regex:
+                expression: '^(?P<timestamp>\S+\s+\d+\s+\d+:\d+:\d+)\s+(?P<hostname>\S+)\s+(?P<service>\S+):\s*(?P<message>.*)'
+            - timestamp:
+                source: timestamp
+                format: 'Jan 2 15:04:05'
+            - labels:
+                hostname:
+                service:
