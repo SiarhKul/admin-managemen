@@ -1,0 +1,2 @@
+{"timestamp":"2025-10-02 22:12:00","level":"info","message":"Test log message","service":"admin-management-server"}
+2025-10-02 22:15:00 [INFO] Test log message from server
