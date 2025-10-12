@@ -29,8 +29,8 @@ export const PostList = () => {
 
   return (
     <div>
-      {posts1.map((post) => {
-        return <PostItem post={post} key={post.userId} />;
+      {posts.map((post) => {
+        return <PostItem {...post} key={post.userId} />;
       })}
     </div>
   );

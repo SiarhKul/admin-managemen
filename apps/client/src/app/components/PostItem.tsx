@@ -1,13 +1,11 @@
-interface IPosts {
-  post: {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-  };
+export interface IPosts {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 }
 
-export const PostItem = ({ post: { userId, id, title, body } }: IPosts) => {
+export const PostItem = ({ userId, id, title, body }: IPosts) => {
   return (
     <div
       style={{

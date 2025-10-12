@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { PostApi } from '../api/PostApi';
+import { IPosts } from '../app/components/PostItem';
 
 export const useFetchPosts = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<IPosts[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -10,7 +12,9 @@ export const useFetchPosts = () => {
         console.log('111111111', res);
         setPosts(res);
         return res;
-      } catch (e: unknown) {}
+      } catch (e: unknown) {
+        console.log(e);
+      }
     };
     fetchPosts();
   }, []);

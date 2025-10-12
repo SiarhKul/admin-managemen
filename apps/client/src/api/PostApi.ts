@@ -1,7 +1,9 @@
+import { IPosts } from '../app/components/PostItem';
+
 const API_BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
 
-class PostApi {
-  static async fetchPosts() {
+export class PostApi {
+  static async fetchPosts(): Promise<IPosts[]> {
     const fetchPosts = await fetch(API_BASE_URL);
     console.log('4444', fetchPosts);
     if (!fetchPosts.ok) {
