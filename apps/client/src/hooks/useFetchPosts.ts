@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PostApi } from '../api/PostApi';
 import { IPosts } from '../app/components/PostItem';
+import { FetchError } from '../errors/index';
 
 export const useFetchPosts = () => {
   const [posts, setPosts] = useState<IPosts[]>([]);
@@ -21,7 +22,10 @@ export const useFetchPosts = () => {
         isMounted = true;
         return res;
       } catch (e: unknown) {
-        console.log(e);
+        if (e instanceof FetchError) {
+          console.log('FetchError', e);
+        }
+        console.log('Unknown error');
       } finally {
         if (isMounted) {
           setIsPostsLoading(false);
