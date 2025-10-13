@@ -23,9 +23,12 @@ export const useFetchPosts = () => {
         return res;
       } catch (e: unknown) {
         if (e instanceof FetchError) {
-          console.log('FetchError', e);
+          if (isMounted) {
+            setError(e.message);
+          }
+          console.log('FetchError', JSON.stringify(e, null, 2));
+          throw new Error(e.message);
         }
-        console.log('Unknown error');
       } finally {
         if (isMounted) {
           setIsPostsLoading(false);

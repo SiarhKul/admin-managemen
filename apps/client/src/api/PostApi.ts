@@ -6,7 +6,6 @@ const API_BASE_URL = 'https://jsonplaceholder.typicode.com/postsы';
 export class PostApi {
   static async fetchPosts(): Promise<IPosts[]> {
     const fetchPosts = await fetch(API_BASE_URL);
-    console.log('4444', fetchPosts);
     if (!fetchPosts.ok) {
       throw new FetchError('Error while fetching posts');
     }

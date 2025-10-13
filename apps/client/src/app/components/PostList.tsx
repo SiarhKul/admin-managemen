@@ -24,11 +24,12 @@ export const PostList = () => {
     },
   ];
 
-  const { posts } = useFetchPosts();
+  const { posts, error } = useFetchPosts();
   console.log(posts);
 
   return (
     <div>
+      <div>{error}</div>
       {posts.map((post) => {
         return <PostItem {...post} key={post.userId} />;
       })}
