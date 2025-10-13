@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { PostApi } from '../api/PostApi';
 import { IPosts } from '../app/components/PostItem';
 import { FetchError } from '../errors/index';
+import logger from '../utils/logger';
 
 export const useFetchPosts = () => {
   const [posts, setPosts] = useState<IPosts[]>([]);
@@ -13,21 +14,25 @@ export const useFetchPosts = () => {
 
     (async () => {
       try {
-        setIsPostsLoading(true);
-        const res = await PostApi.fetchPosts();
+        const response = await PostApi.fetchPosts();
         if (isMounted) {
-          setPosts(res);
+          setIsPostsLoading(true);
+          setPosts(response);
         }
 
-        isMounted = true;
-        return res;
+        return response;
       } catch (e: unknown) {
         if (e instanceof FetchError) {
           if (isMounted) {
             setError(e.message);
           }
-          console.log('FetchError', JSON.stringify(e, null, 2));
-          throw new Error(e.message);
+          return;
+        }
+
+        const error = e instanceof Error ? e.message : 'Unknow error';
+
+        if (isMounted) {
+          setError(error);
         }
       } finally {
         if (isMounted) {
