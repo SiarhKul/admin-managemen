@@ -1,15 +1,15 @@
 import { IPosts } from '../app/components/PostItem';
 import { FetchError } from '../errors/index';
 
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com/postsы';
+const API_BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 export class PostApi {
-  static async fetchPosts(): Promise<IPosts[]> {
-    const fetchPosts = await fetch(API_BASE_URL);
-    if (!fetchPosts.ok) {
+  static async fetchPosts(signal: AbortSignal): Promise<IPosts[]> {
+    const response = await fetch(API_BASE_URL, { signal });
+    if (!response.ok) {
       throw new FetchError('Error while fetching posts');
     }
 
-    return fetchPosts.json();
+    return response.json();
   }
 }
