@@ -10,20 +10,25 @@ interface ErrorBoundaryProps {
   children: React.ReactNode;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    // Update state so the next render shows the fallback UI.
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    // Log error details
-    logger.error('Unhandled React error boundary', { error: error.message, stack: error.stack, errorInfo });
+    logger.error('Unhandled React error boundary', {
+      error: error.message,
+      stack: error.stack,
+      errorInfo,
+    });
   }
 
   handleReset = () => {
@@ -58,7 +63,10 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
           <button onClick={this.handleReset} style={{ padding: '6px 10px' }}>
             Dismiss
           </button>
-          <button onClick={() => window.location.reload()} style={{ padding: '6px 10px' }}>
+          <button
+            onClick={() => window.location.reload()}
+            style={{ padding: '6px 10px' }}
+          >
             Reload
           </button>
         </div>
@@ -67,6 +75,18 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 
   render(): React.ReactNode {
+    if (this.state.hasError) {
+      return (
+        <div>
+          {this.renderTopBanner()}
+          <div style={{ padding: '16px' }}>
+            <h2>Something went wrong.</h2>
+            <p>Please try dismissing this message or reload the page.</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
         {this.renderTopBanner()}
