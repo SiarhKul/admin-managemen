@@ -26,7 +26,6 @@ export const PostList = () => {
 
   const { posts, error } = useFetchPosts();
   console.log(posts);
-  throw new Error('3333333333333333');
 
   return (
     <div>
