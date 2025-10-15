@@ -20,16 +20,16 @@ export const useFetchPosts = () => {
 
         return response;
       } catch (e: unknown) {
-        // if (e instanceof Error && e.name === 'AbortError') {
-        //   return;
-        // }
-        //
-        // if (e instanceof FetchError || e instanceof Error) {
-        //   setError(e.message);
-        //   return;
-        // } else {
-        //   setError('Unknown error');
-        // }
+        if (e instanceof Error && e.name === 'AbortError') {
+          return;
+        }
+
+        if (e instanceof FetchError || e instanceof Error) {
+          setError(e.message);
+          return;
+        } else {
+          setError('Unknown error');
+        }
       } finally {
         setIsPostsLoading(false);
       }

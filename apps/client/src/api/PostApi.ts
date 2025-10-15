@@ -15,8 +15,8 @@ export class PostApi {
   static async fakeFetch(signal: AbortSignal) {
     new Promise((resolve, reject) => {
       setTimeout(() => {
-        reject('444444444444444444444');
-        // throw new Error('1111111113333333333333333333');
+        // reject('444444444444444444444');
+        throw new Error('1111111113333333333333333333');
       }, 1000);
     });
   }
