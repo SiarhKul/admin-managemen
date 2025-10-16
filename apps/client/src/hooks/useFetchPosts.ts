@@ -14,7 +14,7 @@ export const useFetchPosts = () => {
       try {
         setIsPostsLoading(true);
 
-        const response = await PostApi.fakeFetch(abortController.signal);
+        const response = await PostApi.fetchPosts(abortController.signal);
 
         setPosts([]);
 
