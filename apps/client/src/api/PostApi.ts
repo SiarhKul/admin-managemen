@@ -1,7 +1,7 @@
 import { IPosts } from '../app/components/PostItem';
 import { FetchError } from '../errors/index';
 
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com/posts1';
+const API_BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 export class PostApi {
   static async fetchPosts(signal: AbortSignal): Promise<IPosts[]> {

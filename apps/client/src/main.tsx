@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
 import { MessageProvider } from './app/providers/MessageProvider';
 import { Flex } from 'antd';
+import { StateProvider } from './prividers/StateProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,14 +13,16 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <MessageProvider>
-        <Flex
-          vertical
-          style={{ padding: 16, maxWidth: 1200, margin: '0 auto' }}
-        >
-          <App />
-        </Flex>
-      </MessageProvider>
+      <StateProvider>
+        <MessageProvider>
+          <Flex
+            vertical
+            style={{ padding: 16, maxWidth: 1200, margin: '0 auto' }}
+          >
+            <App />
+          </Flex>
+        </MessageProvider>
+      </StateProvider>
     </BrowserRouter>
   </StrictMode>
 );
